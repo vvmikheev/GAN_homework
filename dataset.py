@@ -1,6 +1,4 @@
 import os
-import wget
-import tarfile
 from torch.utils.data import Dataset, DataLoader
 import torchvision.transforms as transforms
 from PIL import Image
