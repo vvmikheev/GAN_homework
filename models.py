@@ -19,9 +19,9 @@ class Generator(nn.Module):
             nn.Conv2d(32, 64, 3, padding=1),
             nn.BatchNorm2d(64),
             nn.ReLU(),
-            nn.Conv2d(64, 64, 3, padding=1),
-            nn.BatchNorm2d(64),
-            nn.ReLU(),
+            # nn.Conv2d(64, 64, 3, padding=1),
+            # nn.BatchNorm2d(64),
+            # nn.ReLU(),
         )
         self.pool1 = nn.MaxPool2d(2)  # 256 -> 128
         self.enc_conv2 = nn.Sequential(
@@ -56,30 +56,30 @@ class Generator(nn.Module):
         # decoder (upsampling)
         self.upsample0 = nn.UpsamplingBilinear2d(scale_factor=2)  # 32 -> 64
         self.dec_conv0 = nn.Sequential(
-            nn.Conv2d(512, 256, 3, padding=1),
-            nn.BatchNorm2d(256),
-            nn.ReLU(),
-            nn.Conv2d(256, 128, 3, padding=1),
+            nn.Conv2d(512, 128, 3, padding=1),
             nn.BatchNorm2d(128),
             nn.ReLU(),
+            # nn.Conv2d(256, 128, 3, padding=1),
+            # nn.BatchNorm2d(128),
+            # nn.ReLU(),
         )
         self.upsample1 = nn.UpsamplingBilinear2d(scale_factor=2)  # 64 -> 128
         self.dec_conv1 = nn.Sequential(
-            nn.Conv2d(256, 128, 3, padding=1),
-            nn.BatchNorm2d(128),
-            nn.ReLU(),
-            nn.Conv2d(128, 64, 3, padding=1),
+            nn.Conv2d(256, 64, 3, padding=1),
             nn.BatchNorm2d(64),
             nn.ReLU(),
+            # nn.Conv2d(128, 64, 3, padding=1),
+            # nn.BatchNorm2d(64),
+            # nn.ReLU(),
         )
         self.upsample2 = nn.UpsamplingBilinear2d(scale_factor=2)  # 128 -> 256
         self.dec_conv2 = nn.Sequential(
-            nn.Conv2d(128, 64, 3, padding=1),
-            nn.BatchNorm2d(64),
-            nn.ReLU(),
-            nn.Conv2d(64, 32, 3, padding=1),
+            nn.Conv2d(128, 32, 3, padding=1),
             nn.BatchNorm2d(32),
             nn.ReLU(),
+            # nn.Conv2d(64, 32, 3, padding=1),
+            # nn.BatchNorm2d(32),
+            # nn.ReLU(),
         )
         self.upsample3 = nn.UpsamplingBilinear2d(scale_factor=2)  # 256 -> 512
         self.dec_conv3 = nn.Sequential(
