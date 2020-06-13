@@ -86,7 +86,7 @@ class Generator(nn.Module):
             nn.Conv2d(64, 32, 3, padding=1),
             nn.BatchNorm2d(32),
             nn.ReLU(),
-            nn.Conv2d(32, 1, 3, padding=1),
+            nn.Conv2d(32, 3, 3, padding=1),
             # nn.BatchNorm2d(1),
             # nn.ReLU(),
         )
