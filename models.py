@@ -168,6 +168,6 @@ class Discriminator(nn.Module):
         x = self.conv1(x)
         x = self.conv2(x)
         x = self.final(x)
-        x = torch.sigmoid(torch.mean(x, (1, 2, 3)))
+        x = torch.mean(x, (1, 2, 3))
         return x
 
