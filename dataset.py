@@ -43,7 +43,10 @@ class MapsDataset(Dataset):
             real = real.transpose(Image.FLIP_TOP_BOTTOM)
             mapped = mapped.transpose(Image.FLIP_TOP_BOTTOM)
 
-        transform = transforms.ToTensor()
+        transform = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize([0.5, 0.5, 0.5], [0.3, 0.3, 0.3]),
+        ])
 
         real = transform(real)
         mapped = transform(mapped)
