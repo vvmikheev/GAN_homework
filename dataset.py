@@ -7,27 +7,13 @@ from PIL import Image
 import random
 
 
-def get_dataset(path='dataset'):
-    try:
-        os.mkdir(path)
-        url = r'http://efrosgans.eecs.berkeley.edu/pix2pix/datasets/maps.tar.gz'
-        wget.download(url, out=path)
-        t = tarfile.open(os.path.join(path, 'maps.tar.gz'))
-        t.extractall(path=path)
-        t.close()
-    except FileExistsError:
-        pass
-
-
 class MapsDataset(Dataset):
+    """
+    This class is for Maps dataset from pix2pix collection
+    """
 
-    def __init__(self, path, mode='gen_train'):
+    def __init__(self, path):
         super().__init__()
-
-        data_modes = ['gen_train', 'dic_train', 'gen_val', 'dic_val']
-        if mode not in data_modes:
-            raise Exception(f'only {data_modes} modes are available')
-        self.mode = mode
         self.path = path
         self.filenames = os.listdir(path)
         self._len = len(self.filenames)
@@ -37,22 +23,25 @@ class MapsDataset(Dataset):
 
     def __getitem__(self, item):
         image = Image.open(os.path.join(self.path, self.filenames[item]))
-        image = image.resize((1024, 512))
+        # there are both real photo and reference map in a single image.
+        image = image.resize((1024, 512))  # it is not really necessary, all models have only convs layers
+
         w, h = image.size
         left_area = (0, 0, w//2, h)
         right_area = (w//2, 0, w, h)
-        real = image.crop(left_area)
-        mapped = image.crop(right_area)
+        real = image.crop(left_area)  # it is a real photo of the Earth
+        mapped = image.crop(right_area)  # it is a map
 
         hflip = random.random() < 0.5
 
-        if hflip:
+        # we have to flip both reference and train image, so I don't use torchvision.transform
+        if hflip:  # horizontal flip
             real = real.transpose(Image.FLIP_LEFT_RIGHT)
             mapped = mapped.transpose(Image.FLIP_LEFT_RIGHT)
 
         vflip = random.random() < 0.5
 
-        if vflip:
+        if vflip:  # vertical flip
             real = real.transpose(Image.FLIP_TOP_BOTTOM)
             mapped = mapped.transpose(Image.FLIP_TOP_BOTTOM)
 
