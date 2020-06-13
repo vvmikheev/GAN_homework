@@ -156,8 +156,8 @@ class Discriminator(nn.Module):
             nn.MaxPool2d(2),  # 16 -> 8
         )
         self.final = nn.Sequential(
-            nn.Conv2d(256, 256, 3, padding=1),
-            nn.BatchNorm2d(256),
+            nn.Conv2d(256, 1, 3, padding=1),
+            nn.BatchNorm2d(1),
             nn.ReLU(),
             nn.MaxPool2d(2)    # 8 -> 4
         )
