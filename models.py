@@ -28,18 +28,18 @@ class Generator(nn.Module):
             nn.Conv2d(64, 128, 3, padding=1),
             nn.BatchNorm2d(128),
             nn.ReLU(),
-            nn.Conv2d(128, 128, 3, padding=1),
-            nn.BatchNorm2d(128),
-            nn.ReLU(),
+            # nn.Conv2d(128, 128, 3, padding=1),
+            # nn.BatchNorm2d(128),
+            # nn.ReLU(),
         )
         self.pool2 = nn.MaxPool2d(2)  # 128 -> 64
         self.enc_conv3 = nn.Sequential(
             nn.Conv2d(128, 256, 3, padding=1),
             nn.BatchNorm2d(256),
             nn.ReLU(),
-            nn.Conv2d(256, 256, 3, padding=1),
-            nn.BatchNorm2d(256),
-            nn.ReLU(),
+            # nn.Conv2d(256, 256, 3, padding=1),
+            # nn.BatchNorm2d(256),
+            # nn.ReLU(),
         )
         self.pool3 = nn.MaxPool2d(2)  # 64 -> 32
 
@@ -48,9 +48,9 @@ class Generator(nn.Module):
             nn.Conv2d(256, 256, 3, padding=1),
             nn.BatchNorm2d(256),
             nn.ReLU(),
-            nn.Conv2d(256, 256, 3, padding=1),
-            nn.BatchNorm2d(256),
-            nn.ReLU(),
+            # nn.Conv2d(256, 256, 3, padding=1),
+            # nn.BatchNorm2d(256),
+            # nn.ReLU(),
         )
 
         # decoder (upsampling)
