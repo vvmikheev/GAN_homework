@@ -150,7 +150,7 @@ class Discriminator(nn.Module):
             nn.BatchNorm2d(128),
             nn.ReLU(),
             nn.MaxPool2d(2),  # 32 -> 16
-            nn.Conv2d(2128, 256, 3, padding=1),
+            nn.Conv2d(128, 256, 3, padding=1),
             nn.BatchNorm2d(256),
             nn.ReLU(),
             nn.MaxPool2d(2),  # 16 -> 8
