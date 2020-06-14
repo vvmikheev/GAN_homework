@@ -48,9 +48,9 @@ class Generator(nn.Module):
             nn.Conv2d(256, 256, 3, padding=1),
             nn.BatchNorm2d(256),
             nn.ReLU(),
-            # nn.Conv2d(256, 256, 3, padding=1),
-            # nn.BatchNorm2d(256),
-            # nn.ReLU(),
+            nn.Conv2d(256, 256, 3, padding=1),
+            nn.BatchNorm2d(256),
+            nn.ReLU(),
         )
 
         # decoder (upsampling)
