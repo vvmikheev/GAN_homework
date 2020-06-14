@@ -136,11 +136,11 @@ class Discriminator(nn.Module):
             nn.MaxPool2d(2),  # 256 -> 128
         )
         self.conv1 = nn.Sequential(
-            nn.Conv2d(64, 128, 3, padding=1),
-            nn.BatchNorm2d(128),
+            nn.Conv2d(64, 64, 3, padding=1),
+            nn.BatchNorm2d(64),
             nn.ReLU(),
             nn.MaxPool2d(2),  # 128 -> 64
-            nn.Conv2d(128, 128, 3, padding=1),
+            nn.Conv2d(64, 128, 3, padding=1),
             nn.BatchNorm2d(128),
             nn.ReLU(),
             nn.MaxPool2d(2),  # 64 -> 32
